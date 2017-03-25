@@ -16,7 +16,7 @@ CREATE TABLE Users(
         password     Varchar (256) NOT NULL ,
         creationDate Date NOT NULL ,
         score        Float NOT NULL ,
-        idTeam       Int NOT NULL ,
+        idTeam       Int ,
         PRIMARY KEY (idUser ) ,
         UNIQUE (pseudo ,mail )
 )ENGINE=InnoDB;
