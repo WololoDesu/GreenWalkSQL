@@ -4,10 +4,10 @@
 
 
 #------------------------------------------------------------
-# Table: User
+# Table: Users
 #------------------------------------------------------------
 
-CREATE TABLE User(
+CREATE TABLE Users(
         idUser       int (11) Auto_increment  NOT NULL ,
         nom          Varchar (256) NOT NULL ,
         prenom       Varchar (256) NOT NULL ,
@@ -87,7 +87,7 @@ CREATE TABLE Obtenir(
 )ENGINE=InnoDB;
 
 ALTER TABLE User ADD CONSTRAINT FK_Users_idTeam FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
-ALTER TABLE Deplacement ADD CONSTRAINT FK_Deplacement_idUser FOREIGN KEY (idUser) REFERENCES User(idUser);
+ALTER TABLE Deplacement ADD CONSTRAINT FK_Deplacement_idUser FOREIGN KEY (idUser) REFERENCES Users(idUser);
 ALTER TABLE Deplacement ADD CONSTRAINT FK_Deplacement_idTransport FOREIGN KEY (idTransport) REFERENCES MoyenDeTransport(idTransport);
-ALTER TABLE Obtenir ADD CONSTRAINT FK_Obtenir_idUser FOREIGN KEY (idUser) REFERENCES User(idUser);
+ALTER TABLE Obtenir ADD CONSTRAINT FK_Obtenir_idUser FOREIGN KEY (idUser) REFERENCES Users(idUser);
 ALTER TABLE Obtenir ADD CONSTRAINT FK_Obtenir_idAchievement FOREIGN KEY (idAchievement) REFERENCES Achievements(idAchievement);
