@@ -4,16 +4,16 @@
 
 
 #------------------------------------------------------------
-# Table: Users
+# Table: User
 #------------------------------------------------------------
 
-CREATE TABLE Users(
+CREATE TABLE User(
         idUser       int (11) Auto_increment  NOT NULL ,
         nom          Varchar (256) NOT NULL ,
         prenom       Varchar (256) NOT NULL ,
         pseudo       Varchar (256) NOT NULL ,
         mail         Varchar (256) NOT NULL ,
-        passwordUser Varchar (256) NOT NULL ,
+        password     Varchar (256) NOT NULL ,
         creationDate Date NOT NULL ,
         score        Float NOT NULL ,
         idTeam       Int NOT NULL ,
@@ -86,8 +86,8 @@ CREATE TABLE Obtenir(
         PRIMARY KEY (idUser ,idAchievement )
 )ENGINE=InnoDB;
 
-ALTER TABLE Users ADD CONSTRAINT FK_Users_idTeam FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
-ALTER TABLE Deplacement ADD CONSTRAINT FK_Deplacement_idUser FOREIGN KEY (idUser) REFERENCES Users(idUser);
+ALTER TABLE User ADD CONSTRAINT FK_Users_idTeam FOREIGN KEY (idTeam) REFERENCES Team(idTeam);
+ALTER TABLE Deplacement ADD CONSTRAINT FK_Deplacement_idUser FOREIGN KEY (idUser) REFERENCES User(idUser);
 ALTER TABLE Deplacement ADD CONSTRAINT FK_Deplacement_idTransport FOREIGN KEY (idTransport) REFERENCES MoyenDeTransport(idTransport);
-ALTER TABLE Obtenir ADD CONSTRAINT FK_Obtenir_idUser FOREIGN KEY (idUser) REFERENCES Users(idUser);
+ALTER TABLE Obtenir ADD CONSTRAINT FK_Obtenir_idUser FOREIGN KEY (idUser) REFERENCES User(idUser);
 ALTER TABLE Obtenir ADD CONSTRAINT FK_Obtenir_idAchievement FOREIGN KEY (idAchievement) REFERENCES Achievements(idAchievement);
