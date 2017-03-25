@@ -91,3 +91,15 @@ ALTER TABLE Deplacement ADD CONSTRAINT FK_Deplacement_idUser FOREIGN KEY (idUser
 ALTER TABLE Deplacement ADD CONSTRAINT FK_Deplacement_idTransport FOREIGN KEY (idTransport) REFERENCES MoyenDeTransport(idTransport);
 ALTER TABLE Obtenir ADD CONSTRAINT FK_Obtenir_idUser FOREIGN KEY (idUser) REFERENCES Users(idUser);
 ALTER TABLE Obtenir ADD CONSTRAINT FK_Obtenir_idAchievement FOREIGN KEY (idAchievement) REFERENCES Achievements(idAchievement);
+CREATE OR REPLACE VIEW Co2Save AS
+WITH
+        tauxUser(idUser, tauxSauve, distance, temps) AS (SELECT Users.idUser, tauxSauve, distance, temps
+        FROM Deplacement
+        INNER JOIN Users ON Users.idUser = Deplacement.idUser
+        INNER JOIN MoyenDeTransport ON MoyenDeTransport.idTransport = Deplacement.idTransport),
+        nbSauv (idUser, taux, distance, temps) AS (SELECT idUser, (distance * tauxSauve) as taux, distance, temps
+        FROM tauxUser),
+        nbSauvTotal (idUser, taux, distance, temps) AS (SELECT idUser, SUM(taux) as totalSauve, SUM(distance) as totalDistance, SUM(temps) as totalTemps
+        FROM nbSauv
+        GROUP BY (idUser))
+SELECT * FROM nbSauvTotal;
