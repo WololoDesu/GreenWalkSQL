@@ -57,7 +57,7 @@ CREATE TABLE MoyenDeTransport(
         idTransport    int (11) Auto_increment  NOT NULL ,
         nom            Varchar (256) NOT NULL ,
         multiplicateur Float NOT NULL ,
-        tauxEmis       Float NOT NULL ,
+        tauxSauve      Float NOT NULL ,
         PRIMARY KEY (idTransport ) ,
         UNIQUE (nom )
 )ENGINE=InnoDB;
